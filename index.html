@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Musée</title>
+    <style>
+        body {
+            margin: 0;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden; /* Évite le défilement */
+        }
+        #character {
+            position: absolute;
+            right: 10%; /* Positionne le personnage à droite */
+            bottom: 10%;
+            width: 400px; /* Taille du personnage ajustée */
+        }
+        #dialogue {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 40px; /* Taille du texte "Bye looser !" ajustée */
+            color: red;
+            display: none; /* Masquer par défaut */
+        }
+    </style>
+</head>
+<body>
+    <audio id="background-music" src="musique.mp3" loop></audio>
+    <img id="character" src="character.png" alt="Personnage">
+    <div id="dialogue">
+        <p>Hello, veux-tu visiter mon musée ?</p>
+        <button onclick="visitMuseum()">Oui !</button>
+        <button onclick="declineVisit()">Eeeeh sans façons ...</button>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        function visitMuseum() {
+            const music = document.getElementById('background-music');
+            setTimeout(() => {
+                music.play(); // Démarre la musique après 6 secondes
+            }, 6000);
+            window.open('https://www.canva.com/design/DAGPh4TuCSM/OvJSUP33r0rqpPMrEdspEg/view?utm_content=DAGPh4TuCSM&utm_campaign=designshare&utm_medium=link&utm_source=editor', '_blank');
+        }
+
+        function declineVisit() {
+            const response = document.getElementById('response');
+            response.textContent = 'Bye looser !';
+            response.style.display = 'block'; // Afficher la réponse
+            
+            // Fermer la page après 2 secondes
+            setTimeout(() => {
+                window.close();
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
